@@ -80,17 +80,16 @@
             margin-bottom: 3rem;
         }
 
-        .coin-info {
-            max-width: 1200px;
+        .meme-philosophy {
+            max-width: 1000px;
             margin: 0 auto 4rem;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
-            align-items: start;
         }
 
-        .coin-stats {
+        .philosophy-section {
             background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
             padding: 2.5rem;
             border-radius: 20px;
@@ -100,7 +99,7 @@
                 inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
-        .coin-stats h3 {
+        .philosophy-section h3 {
             color: #d4af37;
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -108,40 +107,66 @@
             text-align: center;
         }
 
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .philosophy-text {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: justify;
         }
 
-        .stat-item:last-child {
-            border-bottom: none;
+        .meme-examples {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
         }
 
-        .stat-label {
-            color: #999;
-            font-size: 0.95rem;
-        }
-
-        .stat-value {
+        .meme-examples h3 {
             color: #d4af37;
-            font-weight: 600;
             font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .chart-placeholder {
-            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
-            height: 200px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-style: italic;
-            margin: 1.5rem 0;
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .example-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
             border: 1px solid rgba(212,175,55,0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+
+        .example-title {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-category {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .example-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .manifesto {
@@ -309,9 +334,16 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .coin-info {
+            .meme-philosophy {
+                padding: 0 1rem;
+            }
+
+            .meme-examples {
+                padding: 0 1rem;
+            }
+
+            .examples-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
 
             .wing-title {
@@ -361,60 +393,58 @@
         <div class="wing-ceiling"></div>
         
         <div class="wing-header">
-            <h1 class="wing-title">$PUNKED Coin Wing</h1>
-            <p class="wing-subtitle">The Currency of Corrupted Fame</p>
+            <h1 class="wing-title">The Philosophy Wing</h1>
+            <p class="wing-subtitle">The Art & Science of Meme Transformation</p>
         </div>
 
-        <div class="coin-info">
-            <div class="coin-stats">
-                <h3>Token Statistics</h3>
-                <div class="stat-item">
-                    <span class="stat-label">Total Supply</span>
-                    <span class="stat-value">1,000,000,000</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Market Cap</span>
-                    <span class="stat-value">$420,690</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Current Price</span>
-                    <span class="stat-value">$0.0004207</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">24h Change</span>
-                    <span class="stat-value">+69.42%</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Holders</span>
-                    <span class="stat-value">6,969</span>
-                </div>
-                <div class="chart-placeholder">
-                    Price Chart Placeholder
-                    <br><small>(Connect to Dexscreener/Birdeye)</small>
-                </div>
+        <div class="meme-philosophy">
+            <div class="philosophy-section">
+                <h3>The Meme Metamorphosis</h3>
+                <p class="philosophy-text">
+                    What happens when celebrity culture collides with the chaos of internet creativity? The $PUNKED Gallery represents more than just digital art—it's a commentary on how fame itself has become malleable, transformable, and ultimately, absurd. Each piece in our collection demonstrates the power of collective imagination to reshape even the most recognizable faces into something entirely new.
+                </p>
             </div>
 
-            <div class="coin-stats">
-                <h3>Smart Contract</h3>
-                <div class="stat-item">
-                    <span class="stat-label">Network</span>
-                    <span class="stat-value">Solana</span>
+            <div class="philosophy-section">
+                <h3>Digital Alchemy</h3>
+                <p class="philosophy-text">
+                    Our artists practice a form of digital alchemy, taking the base metal of celebrity recognition and transmuting it into comedic gold. Through careful application of AI tools, artistic vision, and pure comedic timing, we create hybrid beings that exist in the liminal space between recognition and bewilderment. Brad Pitt becomes Brad Pitbull not through mere image manipulation, but through a deeper understanding of cultural iconography.
+                </p>
+            </div>
+
+            <div class="philosophy-section">
+                <h3>The Uncanny Valley of Fame</h3>
+                <p class="philosophy-text">
+                    Each artwork deliberately inhabits the uncanny valley—familiar enough to trigger recognition, strange enough to create cognitive dissonance. This tension is where the magic happens. Viewers experience a moment of confused delight, questioning both their memory and their sanity. It's art that makes you do a double-take, then laugh, then question the nature of celebrity itself.
+                </p>
+            </div>
+        </div>
+
+        <div class="meme-examples">
+            <h3>Featured Transformations</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-title">Animal Hybrids</div>
+                    <div class="example-category">Nature Meets Nurture</div>
+                    <div class="example-description">
+                        When celebrities merge with the animal kingdom, we discover new forms of charisma. Brad Pitbull prowls with canine confidence, while Meryl Sheep embodies pastoral wisdom.
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Contract Address</span>
-                    <span class="stat-value" style="font-size: 0.8rem;">PuNkEd1...4A2b9C</span>
+
+                <div class="example-card">
+                    <div class="example-title">Object Fusion</div>
+                    <div class="example-category">Inanimate Animation</div>
+                    <div class="example-description">
+                        The transformation of stars into everyday objects reveals the absurdity of material culture. Keanu Leaves rustles with existential calm, while The Rock becomes literally rocky.
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Liquidity Locked</span>
-                    <span class="stat-value">✓ Forever</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Renounced</span>
-                    <span class="stat-value">✓ Yes</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Tax</span>
-                    <span class="stat-value">0% / 0%</span>
+
+                <div class="example-card">
+                    <div class="example-title">Culinary Creatures</div>
+                    <div class="example-category">Edible Excellence</div>
+                    <div class="example-description">
+                        Food-based transformations explore consumption culture in the most literal sense. Taylor Swiftea steeps in musical memories, while Gordon Ramsalmon swims upstream toward perfection.
+                    </div>
                 </div>
             </div>
         </div>
@@ -440,20 +470,19 @@
         </div>
 
         <div class="manifesto">
-            <h3>The Manifesto of Minted Fame</h3>
-            <p>In an age where celebrity has become currency and authenticity is auctioned to the highest bidder, we present the ultimate satire: $PUNKED. Here, fame is not celebrated but surgically altered, not worshipped but warped beyond recognition.</p>
+            <h3>The Manifesto of Meme Culture</h3>
+            <p>In an age where celebrity has become currency and authenticity is auctioned to the highest bidder, we present the ultimate artistic statement: The $PUNKED Gallery. Here, fame is not celebrated but reimagined, not worshipped but warped into something beautifully absurd.</p>
             
-            <p>Each token represents a fragment of our collective obsession with celebrity culture, transformed into something beautifully absurd. We have taken the faces that sell magazines and twisted them into art that questions the very nature of fame itself.</p>
+            <p>We believe that meme culture represents the democratization of creativity. Anyone with imagination can participate in the collective reshaping of cultural icons. Our gallery celebrates this chaos, elevating internet humor to the status of fine art.</p>
             
-            <p>This is not investment advice. This is artistic rebellion, minted on the blockchain for eternity. Welcome to the future of fame—where Brad Pitt becomes Brad Pitbull, and Meryl Streep transforms into Meryl Sheep.</p>
+            <p>This is not about disrespect—it's about transformation. We take the faces that define our cultural moment and ask: what if? What if Brad Pitt were a dog? What if Meryl Streep were a sheep? In asking these ridiculous questions, we reveal deeper truths about fame, recognition, and the malleable nature of identity itself.</p>
             
-            <p><strong>Why we minted fame wrong: Because fame got everything else wrong first.</strong></p>
+            <p><strong>We meme, therefore we are. In chaos, we find art. In absurdity, we discover truth.</strong></p>
         </div>
 
         <div class="action-buttons">
-            <a href="#" class="action-btn">🚀 Buy $PUNKED</a>
-            <a href="#" class="action-btn secondary">📊 View Chart</a>
-            <a href="gallery.html" class="action-btn secondary">← Back to Gallery</a>
+            <a href="gallery.html" class="action-btn">🎭 View the Collection</a>
+            <a href="index.html" class="action-btn secondary">← Back to Lobby</a>
         </div>
     </div>
 
