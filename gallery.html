@@ -209,6 +209,19 @@
             margin-bottom: 1.5rem;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .artwork-image.placeholder {
+            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
         }
 
         .artwork-plaque {
@@ -326,15 +339,28 @@
             <div class="filter-group">
                 <button class="filter-btn active" data-category="all" onclick="setFilter('category', 'all')">All</button>
                 <button class="filter-btn" data-category="animal" onclick="setFilter('category', 'animal')">Animal</button>
-                <button class="filter-btn" data-category="object" onclick="setFilter('category', 'object')">Object</button>
+                <button class="filter-btn" data-category="elemental" onclick="setFilter('category', 'elemental')">Elemental</button>
                 <button class="filter-btn" data-category="food" onclick="setFilter('category', 'food')">Food</button>
+                <button class="filter-btn" data-category="nature" onclick="setFilter('category', 'nature')">Nature</button>
+                <button class="filter-btn" data-category="product" onclick="setFilter('category', 'product')">Product</button>
+                <button class="filter-btn" data-category="conceptual" onclick="setFilter('category', 'conceptual')">Conceptual</button>
+                <button class="filter-btn" data-category="vehicle" onclick="setFilter('category', 'vehicle')">Vehicle</button>
             </div>
 
             <div class="filter-group">
                 <button class="filter-btn active" data-vibe="all" onclick="setFilter('vibe', 'all')">All Vibes</button>
-                <button class="filter-btn" data-vibe="funny" onclick="setFilter('vibe', 'funny')">Funny</button>
-                <button class="filter-btn" data-vibe="cursed" onclick="setFilter('vibe', 'cursed')">Cursed</button>
+                <button class="filter-btn" data-vibe="wild" onclick="setFilter('vibe', 'wild')">Wild</button>
+                <button class="filter-btn" data-vibe="intense" onclick="setFilter('vibe', 'intense')">Intense</button>
+                <button class="filter-btn" data-vibe="absurd" onclick="setFilter('vibe', 'absurd')">Absurd</button>
+                <button class="filter-btn" data-vibe="majestic" onclick="setFilter('vibe', 'majestic')">Majestic</button>
+                <button class="filter-btn" data-vibe="moody" onclick="setFilter('vibe', 'moody')">Moody</button>
+                <button class="filter-btn" data-vibe="heavenly" onclick="setFilter('vibe', 'heavenly')">Heavenly</button>
+                <button class="filter-btn" data-vibe="peaceful" onclick="setFilter('vibe', 'peaceful')">Peaceful</button>
+                <button class="filter-btn" data-vibe="dramatic" onclick="setFilter('vibe', 'dramatic')">Dramatic</button>
+                <button class="filter-btn" data-vibe="regal" onclick="setFilter('vibe', 'regal')">Regal</button>
                 <button class="filter-btn" data-vibe="elegant" onclick="setFilter('vibe', 'elegant')">Elegant</button>
+                <button class="filter-btn" data-vibe="powerful" onclick="setFilter('vibe', 'powerful')">Powerful</button>
+                <button class="filter-btn" data-vibe="whimsical" onclick="setFilter('vibe', 'whimsical')">Whimsical</button>
             </div>
         </div>
 
@@ -349,16 +375,181 @@
         const memes = [
             {
                 id: 1,
-                name: "Brad Pitbull",
-                year: "2024",
-                category: "animal",
-                vibe: "funny",
-                lore: "This haunting piece represents the peak of celebrity metamorphosis. The subject's piercing gaze transcends traditional boundaries between man and beast, creating a sublime commentary on fame's transformative power. Rumored to be a clone of 2007 Brad Pitt and a Miami pitbull, this work challenges our preconceptions of identity and celebrity culture."
+                name: "Ice Cube",
+                year: 2023,
+                category: "elemental",
+                vibe: "intense",
+                image: "images/Ice Cube.webp",
+                lore: "Frozen in time and attitude, this piece captures the essence of cool — literally. Ice Cube encased in ice is both a pun and a powerful metaphor for untouchable swagger."
             },
             {
                 id: 2,
-                name: "Meryl Sheep",
-                year: "2024",
+                name: "Chance the Wrapper",
+                year: 2023,
+                category: "food",
+                vibe: "absurd",
+                image: "images/chance the wrapper.webp",
+                lore: "This fast-food fantasia reimagines Chance the Rapper as the branding on a McBurger. It's commentary on fame, commodification, and snackability."
+            },
+            {
+                id: 3,
+                name: "Megan The Stallion",
+                year: 2023,
                 category: "animal",
+                vibe: "majestic",
+                image: "images/megan the stallion.webp",
+                lore: "A surreal stallion queen ruling the plains with fierce poise. This hybrid blends equine strength with superstar glam."
+            },
+            {
+                id: 4,
+                name: "Kanye Nest",
+                year: 2023,
+                category: "conceptual",
+                vibe: "moody",
+                image: "images/kanye Nest.webp",
+                lore: "A brooding figure hatched from chaos and genius. Kanye broods in his rooftop nest, surrounded by broken shells of old egos."
+            },
+            {
+                id: 5,
+                name: "Morgan Freemint",
+                year: 2023,
+                category: "product",
+                vibe: "heavenly",
+                image: "images/morgan freemint.webp",
+                lore: "The voice of God now embodies freshness. Floating in minty serenity, Morgan Freemint delivers inner peace in every breath."
+            },
+            {
+                id: 6,
+                name: "Keanu Leaves",
+                year: 2023,
+                category: "nature",
+                vibe: "peaceful",
+                image: "images/Keanu Leaves.webp",
+                lore: "Lost in the foliage, Keanu becomes one with autumn. His smile is the last warmth before winter."
+            },
+            {
+                id: 7,
+                name: "Meryl Sheep",
+                year: 2023,
+                category: "animal",
+                vibe: "dramatic",
+                image: "images/Meryl Sheep.webp",
+                lore: "The hills are alive with Oscar-worthy wool. This piece asks: if sheep could monologue, would they win Best Actress?"
+            },
+            {
+                id: 8,
+                name: "Leonardo DiCaprion",
+                year: 2023,
+                category: "animal",
+                vibe: "regal",
+                image: "images/Leonardo DiCaprion.webp",
+                lore: "The king of the Oscars becomes the king of the jungle. Gold claws, jungle throne — the DiCaprion reigns supreme."
+            },
+            {
+                id: 9,
+                name: "Brad Pitbull",
+                year: 2023,
+                category: "animal",
+                vibe: "wild",
+                image: "images/Brad Pitbull.webp",
+                lore: "Half dog, half Hollywood. Brad Pitbull owns the red carpet with a bark that echoes through meme history."
+            },
+            {
+                id: 10,
+                name: "Justin Timberflake",
+                year: 2023,
+                category: "elemental",
                 vibe: "elegant",
-                lore: "A masterpiece of ovine excellence, this piece captures the essence of method acting through the lens of pastoral serenity. The subject's woolly transformation speaks to the layers of performance that define great artistry. Each curl of wool represents a different Academy Award nomination, creating a tactile timeline of cinematic achievement."
+                image: "images/Justin timberflake.png",
+                lore: "This delicate flurry of flake and fame captures Justin's frosted persona. Soft, cold, and unforgettable — it's gonna be May."
+            },
+            {
+                id: 11,
+                name: "Jett Lee",
+                year: 2023,
+                category: "vehicle",
+                vibe: "powerful",
+                image: "images/Jet lee.webp",
+                lore: "A jet with the soul of a martial arts legend. Jett Lee merges aerial dominance with stoic discipline, ready to roundhouse reality at Mach speed."
+            },
+            {
+                id: 12,
+                name: "Harry Otter",
+                year: 2023,
+                category: "animal",
+                vibe: "whimsical",
+                image: "images/harry otter.webp",
+                lore: "A spellbound river guardian with a lightning scar and a knack for mischief. Harry Otter is the chosen one of the wetlands, wand-ready and wandery-eyed."
+            }
+        ];
+
+        let currentFilters = {
+            category: 'all',
+            vibe: 'all',
+            search: ''
+        };
+
+        function setFilter(type, value) {
+            currentFilters[type] = value;
+            
+            // Update filter button states
+            document.querySelectorAll(`[data-${type}]`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-${type}="${value}"]`).classList.add('active');
+            
+            renderMemes();
+        }
+
+        function filterMemes() {
+            currentFilters.search = event.target.value.toLowerCase();
+            renderMemes();
+        }
+
+        function renderMemes() {
+            const grid = document.getElementById('meme-grid');
+            const filteredMemes = memes.filter(meme => {
+                const matchesCategory = currentFilters.category === 'all' || meme.category === currentFilters.category;
+                const matchesVibe = currentFilters.vibe === 'all' || meme.vibe === currentFilters.vibe;
+                const matchesSearch = currentFilters.search === '' || 
+                    meme.name.toLowerCase().includes(currentFilters.search) ||
+                    meme.lore.toLowerCase().includes(currentFilters.search);
+                
+                return matchesCategory && matchesVibe && matchesSearch;
+            });
+
+            grid.innerHTML = filteredMemes.map(meme => `
+                <div class="artwork-frame" onclick="showExhibit(${meme.id})">
+                    <div class="artwork-image ${meme.image ? '' : 'placeholder'}">
+                        ${meme.image ? `<img src="${meme.image}" alt="${meme.name}" loading="lazy">` : meme.name}
+                    </div>
+                    <div class="artwork-plaque">
+                        <div class="artwork-name">${meme.name}</div>
+                        <div class="artwork-year">${meme.year}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showExhibit(memeId) {
+            // Store the meme data for the exhibit page
+            const meme = memes.find(m => m.id === memeId);
+            if (meme) {
+                localStorage.setItem('selectedMeme', JSON.stringify(meme));
+                window.location.href = 'exhibit.html';
+            }
+        }
+
+        // Initialize the gallery
+        renderMemes();
+
+        // Add subtle lighting animations
+        setInterval(() => {
+            const lighting = document.querySelector('.gallery-lighting');
+            if (lighting) {
+                lighting.style.opacity = 0.8 + Math.random() * 0.2;
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
