@@ -720,8 +720,10 @@ Simple. Artistic. Absolute Comedy.
     </main>
 
 <div class="ca-bar">
-    <div class="ca-text">CA COMING SOON</div>
-    <div class="ca-actions" style="justify-content: center; width: 100%; flex-wrap: wrap;">
+    <div class="ca-actions" style="justify-content: center; width: 100%; flex-wrap: wrap; gap: 1rem; flex-direction: row; align-items: center;">
+        <div class="ca-text" style="color: black; font-weight: 700; font-size: 0.95rem;">
+            72RTJarwBzTmYLmJ6as1kb36Be9MsGQ82129EaVzpump
+        </div>
         <button class="copy-btn" onclick="copyCA()" id="copyBtn">Copy CA</button>
         <a href="https://x.com/i/communities/1930661524986532358/" target="_blank" class="community-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -743,9 +745,9 @@ Simple. Artistic. Absolute Comedy.
 
         // Copy CA function
 function copyCA() {
-    const caAddress = "72RTJarwBzTmYLmJ6as1kb36Be9MsGQ82129EaVzpump"; // Updated CA
+    const caAddress = "72RTJarwBzTmYLmJ6as1kb36Be9MsGQ82129EaVzpump";
     const copyBtn = document.getElementById('copyBtn');
-    
+
     navigator.clipboard.writeText(caAddress).then(() => {
         copyBtn.textContent = 'Copied!';
         copyBtn.classList.add('copied');
@@ -760,7 +762,7 @@ function copyCA() {
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        
+
         copyBtn.textContent = 'Copied!';
         copyBtn.classList.add('copied');
         setTimeout(() => {
@@ -769,6 +771,7 @@ function copyCA() {
         }, 2000);
     });
 }
+
 
     </script>
 </body>
