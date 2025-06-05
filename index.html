@@ -6,6 +6,17 @@
     <title>Puns Intended - Museum of Warped Fame</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-gold: #b8860b;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #0a0a0a;
+            --text-light: #f5f5f5;
+            --text-muted: #888;
+            --glass-bg: rgba(26,26,26,0.3);
+            --border-gold: rgba(212,175,55,0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,14 +24,15 @@
         }
 
         body {
-            background: #1a1a1a;
-            color: #f5f5f5;
             font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Ambient Gallery Lighting */
-        .gallery-lighting {
+        /* Background Effects */
+        .background-effects {
             position: fixed;
             top: 0;
             left: 0;
@@ -28,170 +40,54 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+        }
+
+        .ambient-lighting {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background: 
                 radial-gradient(ellipse 800px 300px at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
-                radial-gradient(ellipse 400px 200px at 20% 100%, rgba(212,175,55,0.02) 0%, transparent 70%),
-                radial-gradient(ellipse 400px 200px at 80% 100%, rgba(212,175,55,0.02) 0%, transparent 70%);
+                radial-gradient(ellipse 400px 200px at 20% 100%, var(--border-gold) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 200px at 80% 100%, var(--border-gold) 0%, transparent 70%);
+            animation: ambientPulse 8s ease-in-out infinite;
         }
 
-        /* Landing Page Styles */
-        .lobby {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            position: relative;
-            background: 
-                linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%),
-                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            overflow: hidden;
-            animation: lobbyPulse 8s ease-in-out infinite;
+        @keyframes ambientPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
-        @keyframes lobbyPulse {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .lobby::before {
-            content: '';
+        .floating-orbs {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse 1200px 400px at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 800px 300px at 25% 100%, rgba(255,255,255,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 800px 300px at 75% 100%, rgba(255,255,255,0.06) 0%, transparent 70%);
-            pointer-events: none;
-            animation: lighting 6s ease-in-out infinite alternate;
+            width: 100%;
+            height: 100%;
         }
 
-        @keyframes lighting {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-
-        .lobby-columns {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: stretch;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .lobby-column {
-            width: 6px;
-            background: linear-gradient(180deg, 
-                transparent 0%, 
-                rgba(212,175,55,0.2) 10%, 
-                rgba(212,175,55,0.4) 30%, 
-                rgba(212,175,55,0.6) 50%, 
-                rgba(212,175,55,0.4) 70%, 
-                rgba(212,175,55,0.2) 90%, 
-                transparent 100%);
-            box-shadow: 
-                0 0 30px rgba(212,175,55,0.3),
-                inset 0 0 10px rgba(255,255,255,0.1);
-            border-radius: 3px;
-            animation: columnGlow 4s ease-in-out infinite alternate;
-        }
-
-        .lobby-column:nth-child(2n) {
-            animation-delay: 1s;
-        }
-
-        .lobby-column:nth-child(3n) {
-            animation-delay: 2s;
-        }
-
-        @keyframes columnGlow {
-            0% { opacity: 0.6; transform: scaleY(0.95); }
-            100% { opacity: 1; transform: scaleY(1); }
-        }
-
-        .lobby-floor {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 250px;
-            background: 
-                linear-gradient(180deg, 
-                    transparent 0%, 
-                    rgba(26,26,26,0.4) 20%, 
-                    rgba(15,15,15,0.8) 60%, 
-                    rgba(8,8,8,0.95) 100%);
-            background-image: 
-                repeating-linear-gradient(90deg, 
-                    transparent, 
-                    transparent 95px, 
-                    rgba(212,175,55,0.1) 95px, 
-                    rgba(212,175,55,0.1) 98px, 
-                    rgba(255,255,255,0.03) 98px, 
-                    rgba(255,255,255,0.03) 100px);
-            box-shadow: inset 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .lobby-ceiling {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 180px;
-            background: 
-                linear-gradient(180deg, 
-                    #3a3a3a 0%, 
-                    rgba(42,42,42,0.9) 30%, 
-                    rgba(26,26,26,0.6) 70%, 
-                    transparent 100%);
-            box-shadow: 
-                inset 0 -8px 25px rgba(0,0,0,0.7),
-                0 0 50px rgba(212,175,55,0.1);
-        }
-
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .floating-orb {
+        .orb {
             position: absolute;
             width: 120px;
             height: 120px;
             background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
             border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
             filter: blur(1px);
+            animation: float 8s ease-in-out infinite;
         }
 
-        .floating-orb:nth-child(1) {
+        .orb:nth-child(1) {
             top: 15%;
             left: 10%;
             animation-duration: 6s;
         }
 
-        .floating-orb:nth-child(2) {
+        .orb:nth-child(2) {
             top: 60%;
             right: 15%;
             animation-duration: 10s;
             animation-delay: -3s;
         }
 
-        .floating-orb:nth-child(3) {
+        .orb:nth-child(3) {
             bottom: 20%;
             left: 20%;
             animation-duration: 8s;
@@ -213,32 +109,144 @@
             }
         }
 
-        .hero-content {
-            text-align: center;
+        /* Gallery Architecture */
+        .gallery-architecture {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .gallery-ceiling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: linear-gradient(180deg, #3a3a3a 0%, rgba(42,42,42,0.9) 30%, rgba(26,26,26,0.6) 70%, transparent 100%);
+            box-shadow: inset 0 -8px 25px rgba(0,0,0,0.7), 0 0 50px var(--border-gold);
+        }
+
+        .gallery-columns {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+        }
+
+        .column {
+            width: 6px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(212,175,55,0.2) 10%, 
+                rgba(212,175,55,0.6) 50%, 
+                rgba(212,175,55,0.2) 90%, 
+                transparent 100%);
+            box-shadow: 0 0 30px rgba(212,175,55,0.3);
+            border-radius: 3px;
+            animation: columnGlow 4s ease-in-out infinite alternate;
+        }
+
+        .column:nth-child(2n) {
+            animation-delay: 1s;
+        }
+
+        .column:nth-child(3n) {
+            animation-delay: 2s;
+        }
+
+        @keyframes columnGlow {
+            0% { opacity: 0.6; transform: scaleY(0.95); }
+            100% { opacity: 1; transform: scaleY(1); }
+        }
+
+        .gallery-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background: 
+                linear-gradient(180deg, transparent 0%, rgba(26,26,26,0.4) 20%, rgba(15,15,15,0.8) 60%, rgba(8,8,8,0.95) 100%);
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 95px, rgba(212,175,55,0.1) 95px, rgba(212,175,55,0.1) 98px, rgba(255,255,255,0.03) 98px, rgba(255,255,255,0.03) 100px);
+            box-shadow: inset 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            padding: 0.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-link {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-gold);
+            color: var(--bg-darker);
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
             z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            padding-bottom: 120px; /* Space for CA bar */
+        }
+
+        .content-card {
             max-width: 1100px;
             padding: 4rem 3rem;
-            position: relative;
-            background: 
-                linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(15,15,15,0.8) 100%);
+            background: linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(15,15,15,0.8) 100%);
             border-radius: 40px;
             backdrop-filter: blur(25px);
-            border: 2px solid rgba(212,175,55,0.3);
+            border: 2px solid var(--border-gold);
             box-shadow: 
                 0 40px 100px rgba(0,0,0,0.8),
                 inset 0 2px 0 rgba(255,255,255,0.15),
                 0 0 80px rgba(212,175,55,0.1);
-            margin: 0 auto;
-            transform: translateY(-30px);
+            text-align: center;
             animation: contentFloat 6s ease-in-out infinite;
         }
 
         @keyframes contentFloat {
-            0%, 100% { transform: translateY(-30px) scale(1); }
-            50% { transform: translateY(-40px) scale(1.01); }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.01); }
         }
 
-        .hero-content::before {
+        .content-card::before {
             content: '';
             position: absolute;
             top: -25px;
@@ -246,7 +254,7 @@
             transform: translateX(-50%);
             width: 200px;
             height: 6px;
-            background: linear-gradient(90deg, transparent, #d4af37 20%, #f5f5f5 50%, #d4af37 80%, transparent);
+            background: linear-gradient(90deg, transparent, var(--primary-gold) 20%, var(--text-light) 50%, var(--primary-gold) 80%, transparent);
             border-radius: 6px;
             animation: topGlow 3s ease-in-out infinite alternate;
         }
@@ -256,37 +264,18 @@
             100% { opacity: 1; width: 250px; }
         }
 
-        .hero-content::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 40px;
-            background: radial-gradient(ellipse, rgba(212,175,55,0.2) 0%, transparent 70%);
-            filter: blur(10px);
-        }
-
-        .museum-plaque {
-            background: 
-                linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+        /* Typography */
+        .welcome-plaque {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #151515 100%);
             border: 3px solid rgba(212,175,55,0.4);
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2.5rem;
-            font-size: 1rem;
-            color: #bbb;
-            text-align: center;
-            line-height: 1.8;
-            box-shadow: 
-                inset 0 2px 0 rgba(255,255,255,0.1),
-                0 10px 30px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
         }
 
-        .museum-plaque::before {
+        .welcome-plaque::before {
             content: '';
             position: absolute;
             top: 0;
@@ -303,28 +292,30 @@
             100% { left: 100%; }
         }
 
-        .museum-plaque .plaque-title {
-            color: #d4af37;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            text-align: center;
+        .plaque-title {
+            color: var(--primary-gold);
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
             text-shadow: 0 2px 10px rgba(212,175,55,0.3);
         }
 
-        .hero-title {
+        .plaque-text {
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        .main-title {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #d4af37 0%, #f5f5f5 30%, #d4af37 60%, #f5f5f5 100%);
+            background: linear-gradient(45deg, var(--primary-gold) 0%, var(--text-light) 30%, var(--primary-gold) 60%, var(--text-light) 100%);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 60px rgba(212,175,55,0.6);
             letter-spacing: 4px;
             line-height: 1.1;
             animation: titleShimmer 4s ease-in-out infinite;
@@ -335,14 +326,13 @@
             50% { background-position: 100% 50%; }
         }
 
-        .hero-subtitle {
+        .subtitle {
             font-size: 2rem;
             font-style: italic;
             color: #ccc;
             margin-bottom: 2.5rem;
             font-weight: 300;
             letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
             animation: subtitlePulse 3s ease-in-out infinite;
         }
 
@@ -351,7 +341,7 @@
             50% { opacity: 1; }
         }
 
-        .lobby-description {
+        .description {
             font-size: 1.2rem;
             color: #aaa;
             line-height: 1.9;
@@ -359,11 +349,10 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-            text-align: center;
         }
 
-        .entrance-actions {
+        /* Action Buttons */
+        .action-buttons {
             display: flex;
             gap: 2.5rem;
             justify-content: center;
@@ -371,10 +360,10 @@
             margin-bottom: 3rem;
         }
 
-        .enter-btn {
-            background: linear-gradient(45deg, #d4af37, #b8860b, #d4af37);
+        .primary-btn {
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold), var(--primary-gold));
             background-size: 200% 200%;
-            color: #0a0a0a;
+            color: var(--bg-darker);
             border: none;
             padding: 2rem 4rem;
             font-size: 1.3rem;
@@ -384,14 +373,13 @@
             transition: all 0.5s ease;
             box-shadow: 
                 0 20px 50px rgba(212, 175, 55, 0.4),
-                inset 0 2px 0 rgba(255,255,255,0.4),
-                0 0 30px rgba(212,175,55,0.2);
+                inset 0 2px 0 rgba(255,255,255,0.4);
             text-transform: uppercase;
             letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
             animation: btnPulse 2s ease-in-out infinite;
         }
 
@@ -400,7 +388,7 @@
             50% { transform: scale(1.02); }
         }
 
-        .enter-btn::before {
+        .primary-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -411,23 +399,21 @@
             transition: left 0.8s ease;
         }
 
-        .enter-btn:hover {
+        .primary-btn:hover {
             transform: translateY(-6px) scale(1.05);
             background-position: 100% 0%;
             box-shadow: 
                 0 30px 80px rgba(212, 175, 55, 0.6),
-                inset 0 2px 0 rgba(255,255,255,0.4),
-                0 0 50px rgba(212,175,55,0.4);
+                inset 0 2px 0 rgba(255,255,255,0.4);
         }
 
-        .enter-btn:hover::before {
+        .primary-btn:hover::before {
             left: 100%;
         }
 
-        .explore-btn {
-            background: 
-                linear-gradient(45deg, rgba(255,255,255,0.15), rgba(212,175,55,0.2));
-            color: #f5f5f5;
+        .secondary-btn {
+            background: linear-gradient(45deg, rgba(255,255,255,0.15), rgba(212,175,55,0.2));
+            color: var(--text-light);
             border: 3px solid rgba(212,175,55,0.6);
             padding: 1.8rem 3rem;
             font-size: 1.1rem;
@@ -440,58 +426,39 @@
             backdrop-filter: blur(15px);
             text-decoration: none;
             display: inline-block;
-            position: relative;
-            overflow: hidden;
         }
 
-        .explore-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(212,175,55,0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .explore-btn:hover {
+        .secondary-btn:hover {
             background: rgba(212,175,55,0.3);
-            border-color: #d4af37;
+            border-color: var(--primary-gold);
             transform: translateY(-4px);
-            box-shadow: 
-                0 15px 40px rgba(212,175,55,0.3),
-                inset 0 2px 0 rgba(255,255,255,0.2);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
         }
 
-        .explore-btn:hover::before {
-            opacity: 1;
-        }
-
-        .lobby-features {
+        /* Features */
+        .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 2px solid rgba(212,175,55,0.3);
+            border-top: 2px solid var(--border-gold);
         }
 
-        .feature-item {
+        .feature-card {
             text-align: center;
             color: #bbb;
             padding: 1.5rem;
-            background: rgba(26,26,26,0.3);
+            background: var(--glass-bg);
             border-radius: 20px;
-            border: 1px solid rgba(212,175,55,0.2);
+            border: 1px solid var(--border-gold);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-item::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -502,13 +469,13 @@
             transition: left 0.6s ease;
         }
 
-        .feature-item:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
             border-color: rgba(212,175,55,0.5);
             box-shadow: 0 10px 30px rgba(212,175,55,0.2);
         }
 
-        .feature-item:hover::before {
+        .feature-card:hover::before {
             left: 100%;
         }
 
@@ -518,147 +485,297 @@
             font-weight: 500;
         }
 
-        /* Navigation */
-        .nav {
+        /* CA Coming Soon Bar */
+        .ca-bar {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 100;
-            display: flex;
-            gap: 0.5rem;
-            background: rgba(26, 26, 26, 0.9);
-            padding: 0.5rem;
-            border-radius: 25px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.95) 0%, rgba(184,134,11,0.95) 100%);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 2px solid rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            animation: barGlow 3s ease-in-out infinite alternate;
         }
 
-        .nav-btn {
-            background: transparent;
-            border: none;
-            color: #f5f5f5;
-            padding: 0.8rem 1.5rem;
-            border-radius: 20px;
+        @keyframes barGlow {
+            0% { box-shadow: 0 -10px 30px rgba(0,0,0,0.3); }
+            100% { box-shadow: 0 -10px 30px rgba(0,0,0,0.3), 0 0 40px rgba(212,175,55,0.6); }
+        }
+
+        .ca-text {
+            color: var(--bg-darker);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ca-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            background: rgba(10,10,10,0.8);
+            color: var(--primary-gold);
+            border: 2px solid rgba(10,10,10,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-weight: 600;
             font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: #d4af37;
-            color: #0a0a0a;
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        .copy-btn:hover {
+            background: rgba(10,10,10,0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .copy-btn.copied {
+            background: rgba(34,197,94,0.8);
+            color: white;
+            border-color: rgba(34,197,94,0.8);
+        }
+
+        .twitter-btn,
+        .community-btn {
+            background: #1d9bf0;
+            color: white;
+            border: 2px solid #1d9bf0;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .twitter-btn:hover,
+        .community-btn:hover {
+            background: #1a8cd8;
+            border-color: #1a8cd8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29,155,240,0.4);
+        }
+
+        .community-btn {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
+        }
+
+        .community-btn:hover {
+            background: #7c3aed;
+            border-color: #7c3aed;
+            box-shadow: 0 5px 15px rgba(139,92,246,0.4);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-title {
+            .main-title {
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
+            .subtitle {
                 font-size: 1.2rem;
             }
 
-            .entrance-actions {
+            .action-buttons {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .enter-btn, .explore-btn {
+            .primary-btn,
+            .secondary-btn {
                 width: 100%;
                 max-width: 300px;
             }
 
-            .nav {
+            .navigation {
                 top: 1rem;
                 right: 1rem;
                 flex-direction: column;
             }
 
-            .hero-content {
+            .content-card {
                 margin: 0 1rem;
                 padding: 2rem 1rem;
             }
 
-            .lobby-features {
+            .features {
                 grid-template-columns: 1fr;
+            }
+
+            .ca-bar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .ca-text {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .ca-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .copy-btn,
+            .twitter-btn,
+            .community-btn {
+                flex: 1;
+                justify-content: center;
+                max-width: 120px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="gallery-lighting"></div>
-
-    <!-- Navigation -->
-    <div class="nav">
-        <a href="#" class="nav-btn active">Lobby</a>
-        <a href="gallery.html" class="nav-btn">Gallery</a>
-        <a href="eastwing.html" class="nav-btn">East Wing</a>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="ambient-lighting"></div>
+        <div class="floating-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
+        </div>
     </div>
 
-    <!-- Landing Page -->
-    <div class="lobby">
-        <div class="lobby-ceiling"></div>
-        <div class="lobby-columns">
-            <div class="lobby-column"></div>
-            <div class="lobby-column"></div>
-            <div class="lobby-column"></div>
-            <div class="lobby-column"></div>
-            <div class="lobby-column"></div>
+    <!-- Gallery Architecture -->
+    <div class="gallery-architecture">
+        <div class="gallery-ceiling"></div>
+        <div class="gallery-columns">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
         </div>
-        <div class="floating-elements">
-            <div class="floating-orb"></div>
-            <div class="floating-orb"></div>
-            <div class="floating-orb"></div>
-        </div>
-        <div class="lobby-floor"></div>
-        
-        <div class="hero-content">
-            <div class="museum-plaque">
+        <div class="gallery-floor"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <a href="#" class="nav-link active">Lobby</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="eastwing.html" class="nav-link">East Wing</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-card">
+            <div class="welcome-plaque">
                 <div class="plaque-title">Welcome to Puns Intended</div>
-                Where celebrity faces go to get… weird.
+                <div class="plaque-text">Where celebrity faces go to get… weird.</div>
             </div>
             
-            <h1 class="hero-title">Puns Intended</h1>
-            <p class="hero-subtitle">Where fame gets melted, remixed, and memeified</p>
+            <h1 class="main-title">Puns Intended</h1>
+            <p class="subtitle">Where fame gets melted, remixed, and memeified</p>
             
-            <p class="lobby-description">
+            <p class="description">
                 You've just stepped into the strangest museum on the internet. Here, A-listers are reimagined as animals, fruits, and fever dreams. Nothing is sacred. Fame gets melted, remixed, and memeified into digital chaos.
                 <br><br>
-                Some call it art. Some call it cursed. We call it <strong style="color: #d4af37;">$PUNS</strong>.
+                Some call it art. Some call it cursed. We call it <strong style="color: var(--primary-gold);">$PUNS</strong>.
                 <br><br>
                 👇 Pick your poison:
             </p>
             
-            <div class="entrance-actions">
-                <a href="gallery.html" class="enter-btn">🎭 Enter the Gallery</a>
-                <a href="eastwing.html" class="explore-btn">💰 Explore $PUNS</a>
+            <div class="action-buttons">
+                <a href="gallery.html" class="primary-btn">🎭 Enter the Gallery</a>
+                <a href="eastwing.html" class="secondary-btn">💰 Explore $PUNS</a>
             </div>
             
-            <div class="lobby-features">
-                <div class="feature-item">
+            <div class="features">
+                <div class="feature-card">
                     <div class="feature-text"><strong>28 Featured Artworks</strong><br>of distorted greatness</div>
                 </div>
-                <div class="feature-item">
+                <div class="feature-card">
                     <div class="feature-text"><strong>Learn the philosophy</strong><br>behind the chaos</div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- CA Coming Soon Bar -->
+    <div class="ca-bar">
+        <div class="ca-text">CA Coming Soon</div>
+        <div class="ca-actions">
+            <button class="copy-btn" onclick="copyCA()" id="copyBtn">Copy CA</button>
+            <a href="https://x.com/PUNSintendedsol" target="_blank" class="twitter-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter
+            </a>
+            <a href="https://x.com/i/communities/1930464430099444216/" target="_blank" class="community-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Community
+            </a>
+        </div>
     </div>
 
     <script>
-        // Add subtle lighting animations
+        // Ambient lighting animation
         setInterval(() => {
-            const lighting = document.querySelector('.gallery-lighting');
+            const lighting = document.querySelector('.ambient-lighting');
             if (lighting) {
                 lighting.style.opacity = 0.8 + Math.random() * 0.2;
             }
         }, 3000);
+
+        // Copy CA function
+        function copyCA() {
+            const caAddress = "CA_ADDRESS_PLACEHOLDER"; // Replace with actual CA
+            const copyBtn = document.getElementById('copyBtn');
+            
+            navigator.clipboard.writeText(caAddress).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy CA';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = caAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy CA';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
