@@ -720,7 +720,9 @@ Simple. Artistic. Absolute Comedy.
     </main>
 
 <div class="ca-bar">
-    <div class="ca-actions" style="justify-content: center; width: 100%;">
+    <div class="ca-text">CA COMING SOON</div>
+    <div class="ca-actions" style="justify-content: center; width: 100%; flex-wrap: wrap;">
+        <button class="copy-btn" onclick="copyCA()" id="copyBtn">Copy CA</button>
         <a href="https://x.com/i/communities/1930661524986532358/" target="_blank" class="community-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -740,36 +742,34 @@ Simple. Artistic. Absolute Comedy.
         }, 3000);
 
         // Copy CA function
-        function copyCA() {
-            const caAddress = "CA_ADDRESS_PLACEHOLDER"; // Replace with actual CA
-            const copyBtn = document.getElementById('copyBtn');
-            
-            navigator.clipboard.writeText(caAddress).then(() => {
-                copyBtn.textContent = 'Copied!';
-                copyBtn.classList.add('copied');
-                
-                setTimeout(() => {
-                    copyBtn.textContent = 'Copy CA';
-                    copyBtn.classList.remove('copied');
-                }, 2000);
-            }).catch(() => {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = caAddress;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                copyBtn.textContent = 'Copied!';
-                copyBtn.classList.add('copied');
-                
-                setTimeout(() => {
-                    copyBtn.textContent = 'Copy CA';
-                    copyBtn.classList.remove('copied');
-                }, 2000);
-            });
-        }
+function copyCA() {
+    const caAddress = "72RTJarwBzTmYLmJ6as1kb36Be9MsGQ82129EaVzpump"; // Updated CA
+    const copyBtn = document.getElementById('copyBtn');
+    
+    navigator.clipboard.writeText(caAddress).then(() => {
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+            copyBtn.textContent = 'Copy CA';
+            copyBtn.classList.remove('copied');
+        }, 2000);
+    }).catch(() => {
+        const textArea = document.createElement('textarea');
+        textArea.value = caAddress;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+            copyBtn.textContent = 'Copy CA';
+            copyBtn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
     </script>
 </body>
 </html>
