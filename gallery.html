@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The $PUNKED Gallery - Main Gallery</title>
+    <title>Puns Intended - Main Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -83,9 +83,7 @@
         .controls {
             display: flex;
             justify-content: center;
-            gap: 2rem;
             margin: 0 2rem 3rem;
-            flex-wrap: wrap;
             padding: 1.5rem;
             background: rgba(26, 26, 26, 0.5);
             border-radius: 15px;
@@ -109,31 +107,6 @@
             outline: none;
             border-color: #d4af37;
             box-shadow: 0 0 15px rgba(212,175,55,0.2);
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .filter-btn {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #f5f5f5;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: #d4af37;
-            color: #0a0a0a;
-            border-color: #d4af37;
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
         }
 
         /* Gallery Floor */
@@ -531,33 +504,6 @@
 
         <div class="controls">
             <input type="text" class="search-bar" placeholder="Search by fame or deformity..." oninput="filterMemes()">
-            
-            <div class="filter-group">
-                <button class="filter-btn active" data-category="all" onclick="setFilter('category', 'all')">All</button>
-                <button class="filter-btn" data-category="animal" onclick="setFilter('category', 'animal')">Animal</button>
-                <button class="filter-btn" data-category="elemental" onclick="setFilter('category', 'elemental')">Elemental</button>
-                <button class="filter-btn" data-category="food" onclick="setFilter('category', 'food')">Food</button>
-                <button class="filter-btn" data-category="nature" onclick="setFilter('category', 'nature')">Nature</button>
-                <button class="filter-btn" data-category="product" onclick="setFilter('category', 'product')">Product</button>
-                <button class="filter-btn" data-category="conceptual" onclick="setFilter('category', 'conceptual')">Conceptual</button>
-                <button class="filter-btn" data-category="vehicle" onclick="setFilter('category', 'vehicle')">Vehicle</button>
-            </div>
-
-            <div class="filter-group">
-                <button class="filter-btn active" data-vibe="all" onclick="setFilter('vibe', 'all')">All Vibes</button>
-                <button class="filter-btn" data-vibe="wild" onclick="setFilter('vibe', 'wild')">Wild</button>
-                <button class="filter-btn" data-vibe="intense" onclick="setFilter('vibe', 'intense')">Intense</button>
-                <button class="filter-btn" data-vibe="absurd" onclick="setFilter('vibe', 'absurd')">Absurd</button>
-                <button class="filter-btn" data-vibe="majestic" onclick="setFilter('vibe', 'majestic')">Majestic</button>
-                <button class="filter-btn" data-vibe="moody" onclick="setFilter('vibe', 'moody')">Moody</button>
-                <button class="filter-btn" data-vibe="heavenly" onclick="setFilter('vibe', 'heavenly')">Heavenly</button>
-                <button class="filter-btn" data-vibe="peaceful" onclick="setFilter('vibe', 'peaceful')">Peaceful</button>
-                <button class="filter-btn" data-vibe="dramatic" onclick="setFilter('vibe', 'dramatic')">Dramatic</button>
-                <button class="filter-btn" data-vibe="regal" onclick="setFilter('vibe', 'regal')">Regal</button>
-                <button class="filter-btn" data-vibe="elegant" onclick="setFilter('vibe', 'elegant')">Elegant</button>
-                <button class="filter-btn" data-vibe="powerful" onclick="setFilter('vibe', 'powerful')">Powerful</button>
-                <button class="filter-btn" data-vibe="whimsical" onclick="setFilter('vibe', 'whimsical')">Whimsical</button>
-            </div>
         </div>
 
         <div class="gallery-floor">
@@ -691,29 +637,159 @@
                 vibe: "whimsical",
                 image: "images/harry otter.webp",
                 lore: "A spellbound river guardian with a lightning scar and a knack for mischief. Harry Otter is the chosen one of the wetlands, wand-ready and wandery-eyed."
+            },
+            {
+                id: 13,
+                name: "Emma Stonehenge",
+                year: 2022,
+                category: "landmark",
+                vibe: "mythic",
+                image: "images/emma stone.webp",
+                lore: "An ancient enigma reborn as redhead royalty. Emma Stonehenge is timeless, mysterious, and standing for 5,000 years of stellar performances."
+            },
+            {
+                id: 14,
+                name: "Vin Deli",
+                year: 2024,
+                category: "food",
+                vibe: "aggressive",
+                image: "images/vin deli.png",
+                lore: "Powered by cold cuts and family values, Vin Deli slices through salami like it's a high-speed chase. One bite: explosive flavor."
+            },
+            {
+                id: 15,
+                name: "Doja Catfish",
+                year: 2022,
+                category: "animal",
+                vibe: "mysterious",
+                image: "images/doja catfish.webp",
+                lore: "Lurking in the deep with lashes sharp enough to cut, Doja Catfish is elegance with fins. She says moo, but underwater."
+            },
+            {
+                id: 16,
+                name: "Post Mailone",
+                year: 2023,
+                category: "object",
+                vibe: "wholesome",
+                image: "images/post malone.png",
+                lore: "Neither rain, nor sleet, nor chart-topping fame shall stop this box from delivering your packages with a smile and a song."
+            },
+            {
+                id: 17,
+                name: "Picklas Cage",
+                year: 2021,
+                category: "food",
+                vibe: "zany",
+                image: "images/picklas cage.webp",
+                lore: "A salty relic of American weirdness, Picklas Cage is tangy, unhinged, and fermented to perfection. One bite unlocks pure chaos."
+            },
+            {
+                id: 18,
+                name: "Nicolas Caged",
+                year: 2020,
+                category: "conceptual",
+                vibe: "existential",
+                image: "images/nicholas cage.webp",
+                lore: "A man, a metaphor, a meme. Nicolas Caged contemplates freedom from the inside out, trapped in his own iconic intensity."
+            },
+            {
+                id: 19,
+                name: "50 Euro Cent",
+                year: 2024,
+                category: "currency",
+                vibe: "iconic",
+                image: "images/50 cent.png",
+                lore: "From the block to the bank, 50 Euro Cent transcends borders and budgets. Minted in pure street credibility."
+            },
+            {
+                id: 20,
+                name: "Jack Blackhole",
+                year: 2025,
+                category: "space",
+                vibe: "chaotic",
+                image: "images/jack blackhole.webp",
+                lore: "A cosmic riff gone wrong. Jack Blackhole shreds through spacetime, screaming into the void while gravity headbangs."
+            },
+            {
+                id: 21,
+                name: "Elvis Parsley",
+                year: 2021,
+                category: "food",
+                vibe: "herbal",
+                image: "images/elvis parsley.webp",
+                lore: "The King is garnished. With a crown of greens and a voice seasoned with soul, Elvis Parsley returns to spice things up."
+            },
+            {
+                id: 22,
+                name: "Tea Pain",
+                year: 2024,
+                category: "beverage",
+                vibe: "dramatic",
+                image: "images/Tea Pain.webp",
+                lore: "Brewed from heartbreak and steeped in soul, Tea Pain is what happens when autotune meets oolong. He's hot, bitter, and full of regrets."
+            },
+            {
+                id: 23,
+                name: "T-Pain",
+                year: 2020,
+                category: "music",
+                vibe: "unfiltered",
+                image: "images/T Pain.webp",
+                lore: "Before he was a bag, he was a man. And before that? A walking vibe check. This is the before the brew—T-Pain in his rawest emotional state."
+            },
+            {
+                id: 24,
+                name: "Dwayne The Rock Johnson",
+                year: 2022,
+                category: "object",
+                vibe: "solid",
+                image: "images/Dwayne The Rock Johnson.png",
+                lore: "Unmovable. Unbreakable. Unmistakably Dwayne. Now available in gravel-sized form. Pocket this powerhouse and feel the charisma crumble."
+            },
+            {
+                id: 25,
+                name: "Chris Prat",
+                year: 2021,
+                category: "animal",
+                vibe: "cheesy",
+                image: "images/Chris Pratt.png",
+                lore: "From guarding galaxies to stealing cheese, Chris Prat is the ultimate space rodent with a taste for lactose and laser tag."
+            },
+            {
+                id: 26,
+                name: "Whoopi Cushion",
+                year: 2023,
+                category: "object",
+                vibe: "gassy",
+                image: "images/whoopi cushion.webp",
+                lore: "Comedy royalty and flatulence icon. Every sit is a standing ovation in the Church of Whoopi."
+            },
+            {
+                id: 27,
+                name: "Kevin Heart",
+                year: 2022,
+                category: "anatomy",
+                vibe: "wholesome",
+                image: "images/kevin heart.png",
+                lore: "Pumping jokes through your bloodstream since 2005. Kevin Heart is the reason laughter is vital."
+            },
+            {
+                id: 28,
+                name: "Future",
+                year: 3024,
+                category: "cyber",
+                vibe: "toxic",
+                image: "images/future.webp",
+                lore: "From the year 3024, he returns with digital heartbreak and chrome drip. He is inevitable. And petty."
             }
         ];
 
         let currentFilters = {
-            category: 'all',
-            vibe: 'all',
             search: ''
         };
 
         let currentLightboxIndex = 0;
         let filteredMemesForLightbox = [];
-
-        function setFilter(type, value) {
-            currentFilters[type] = value;
-            
-            // Update filter button states
-            document.querySelectorAll(`[data-${type}]`).forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`[data-${type}="${value}"]`).classList.add('active');
-            
-            renderMemes();
-        }
 
         function filterMemes() {
             currentFilters.search = event.target.value.toLowerCase();
@@ -723,13 +799,11 @@
         function renderMemes() {
             const grid = document.getElementById('meme-grid');
             const filteredMemes = memes.filter(meme => {
-                const matchesCategory = currentFilters.category === 'all' || meme.category === currentFilters.category;
-                const matchesVibe = currentFilters.vibe === 'all' || meme.vibe === currentFilters.vibe;
                 const matchesSearch = currentFilters.search === '' || 
                     meme.name.toLowerCase().includes(currentFilters.search) ||
                     meme.lore.toLowerCase().includes(currentFilters.search);
                 
-                return matchesCategory && matchesVibe && matchesSearch;
+                return matchesSearch;
             });
 
             // Store filtered memes for lightbox navigation
