@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The $PUNKED Gallery - Museum of Warped Fame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Gallery Lighting */
+        .gallery-lighting {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: 
+                radial-gradient(ellipse 800px 300px at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse 400px 200px at 20% 100%, rgba(212,175,55,0.02) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 200px at 80% 100%, rgba(212,175,55,0.02) 0%, transparent 70%);
+        }
+
+        /* Landing Page Styles */
+        .lobby {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+
+        .lobby::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 1200px 400px at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 800px 300px at 25% 100%, rgba(255,255,255,0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 800px 300px at 75% 100%, rgba(255,255,255,0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .lobby-columns {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lobby-column {
+            width: 4px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(212,175,55,0.1) 20%, 
+                rgba(212,175,55,0.15) 50%, 
+                rgba(212,175,55,0.1) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 20px rgba(212,175,55,0.1);
+        }
+
+        .lobby-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(26,26,26,0.3) 30%, 
+                rgba(15,15,15,0.8) 100%);
+            background-image: 
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 98px, 
+                    rgba(255,255,255,0.02) 98px, 
+                    rgba(255,255,255,0.02) 100px);
+        }
+
+        .lobby-ceiling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg, 
+                #2a2a2a 0%, 
+                rgba(42,42,42,0.8) 50%, 
+                transparent 100%);
+            box-shadow: inset 0 -5px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 1000px;
+            padding: 3rem 2rem;
+            position: relative;
+            background: rgba(26,26,26,0.3);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            margin: 0 auto;
+            transform: translateY(-50px);
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            border-radius: 4px;
+        }
+
+        .museum-plaque {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #999;
+            text-align: left;
+            line-height: 1.6;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .museum-plaque .plaque-title {
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #d4af37 0%, #f5f5f5 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(212,175,55,0.4);
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .lobby-description {
+            font-size: 1.1rem;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .entrance-actions {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .enter-btn {
+            background: linear-gradient(45deg, #d4af37, #b8860b);
+            color: #0a0a0a;
+            border: none;
+            padding: 1.5rem 3.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 15px 40px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .enter-btn:hover::before {
+            left: 100%;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 25px 60px rgba(212, 175, 55, 0.5),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        .explore-btn {
+            background: rgba(255,255,255,0.1);
+            color: #f5f5f5;
+            border: 2px solid rgba(212,175,55,0.5);
+            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .explore-btn:hover {
+            background: rgba(212,175,55,0.2);
+            border-color: #d4af37;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+
+        .lobby-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .feature-item {
+            text-align: center;
+            color: #999;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 0.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #f5f5f5;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #d4af37;
+            color: #0a0a0a;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .entrance-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .enter-btn, .explore-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .nav {
+                top: 1rem;
+                right: 1rem;
+                flex-direction: column;
+            }
+
+            .hero-content {
+                margin: 0 1rem;
+                padding: 2rem 1rem;
+            }
+
+            .lobby-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-lighting"></div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <a href="#" class="nav-btn active">Lobby</a>
+        <a href="gallery.html" class="nav-btn">Gallery</a>
+        <a href="eastwing.html" class="nav-btn">East Wing</a>
+    </div>
+
+    <!-- Landing Page -->
+    <div class="lobby">
+        <div class="lobby-ceiling"></div>
+        <div class="lobby-columns">
+            <div class="lobby-column"></div>
+            <div class="lobby-column"></div>
+            <div class="lobby-column"></div>
+            <div class="lobby-column"></div>
+            <div class="lobby-column"></div>
+        </div>
+        <div class="lobby-floor"></div>
+        
+        <div class="hero-content">
+            <div class="museum-plaque">
+                <div class="plaque-title">Welcome to</div>
+                An exclusive exhibition of digitally transformed celebrity portraits, where fame meets artistic metamorphosis in the most unexpected ways.
+            </div>
+            
+            <h1 class="hero-title">The $PUNKED Gallery</h1>
+            <p class="hero-subtitle">A museum of fame's worst mutations</p>
+            
+            <p class="lobby-description">
+                Step into a world where celebrity culture is transformed into high art. Our curated collection features 
+                digitally metamorphosed portraits that challenge the boundaries between fame, identity, and artistic expression.
+            </p>
+            
+            <div class="entrance-actions">
+                <a href="gallery.html" class="enter-btn">🖼 Enter the Gallery</a>
+                <a href="eastwing.html" class="explore-btn">💰 Explore $PUNKED</a>
+            </div>
+            
+            <div class="lobby-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-text">6 Featured<br>Artworks</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏛️</div>
+                    <div class="feature-text">Museum<br>Experience</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-text">Digital<br>Transformation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle lighting animations
+        setInterval(() => {
+            const lighting = document.querySelector('.gallery-lighting');
+            if (lighting) {
+                lighting.style.opacity = 0.8 + Math.random() * 0.2;
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
