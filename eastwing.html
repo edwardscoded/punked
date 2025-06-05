@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The $PUNKED Gallery - East Wing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Gallery Lighting */
+        .gallery-lighting {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: 
+                radial-gradient(ellipse 800px 300px at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse 400px 200px at 20% 100%, rgba(212,175,55,0.02) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 200px at 80% 100%, rgba(212,175,55,0.02) 0%, transparent 70%);
+        }
+
+        /* East Wing */
+        .east-wing {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .wing-ceiling {
+            height: 100px;
+            background: linear-gradient(180deg, #333 0%, #2a2a2a 100%);
+            box-shadow: inset 0 -3px 15px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .wing-ceiling::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%);
+        }
+
+        .wing-header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        .wing-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-shadow: 0 3px 15px rgba(212,175,55,0.4);
+            letter-spacing: 2px;
+        }
+
+        .wing-subtitle {
+            font-size: 1.3rem;
+            color: #999;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        .coin-info {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .coin-stats {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212,175,55,0.3);
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .coin-stats h3 {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .stat-value {
+            color: #d4af37;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .chart-placeholder {
+            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .manifesto {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212,175,55,0.3);
+            line-height: 1.9;
+            color: #ccc;
+            font-style: italic;
+            font-size: 1.1rem;
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            border-radius: 3px;
+        }
+
+        .manifesto h3 {
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .manifesto p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .manifesto p:last-child {
+            color: #d4af37;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .timeline h3 {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212,175,55,0.2);
+            margin-bottom: 1.5rem;
+            position: relative;
+            border-left: 4px solid #d4af37;
+        }
+
+        .timeline-date {
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .action-btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin: 0 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.1);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 0.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #f5f5f5;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #d4af37;
+            color: #0a0a0a;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .coin-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .wing-title {
+                font-size: 2.5rem;
+            }
+
+            .manifesto {
+                margin: 0 1rem 2rem;
+                padding: 2rem;
+            }
+
+            .timeline {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                top: 1rem;
+                right: 1rem;
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                padding: 1rem;
+            }
+
+            .action-btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-lighting"></div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <a href="index.html" class="nav-btn">Lobby</a>
+        <a href="gallery.html" class="nav-btn">Gallery</a>
+        <a href="eastwing.html" class="nav-btn active">East Wing</a>
+    </div>
+
+    <!-- East Wing - $PUNKED Coin -->
+    <div class="east-wing">
+        <div class="wing-ceiling"></div>
+        
+        <div class="wing-header">
+            <h1 class="wing-title">$PUNKED Coin Wing</h1>
+            <p class="wing-subtitle">The Currency of Corrupted Fame</p>
+        </div>
+
+        <div class="coin-info">
+            <div class="coin-stats">
+                <h3>Token Statistics</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Total Supply</span>
+                    <span class="stat-value">1,000,000,000</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Market Cap</span>
+                    <span class="stat-value">$420,690</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Current Price</span>
+                    <span class="stat-value">$0.0004207</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">24h Change</span>
+                    <span class="stat-value">+69.42%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Holders</span>
+                    <span class="stat-value">6,969</span>
+                </div>
+                <div class="chart-placeholder">
+                    Price Chart Placeholder
+                    <br><small>(Connect to Dexscreener/Birdeye)</small>
+                </div>
+            </div>
+
+            <div class="coin-stats">
+                <h3>Smart Contract</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Network</span>
+                    <span class="stat-value">Solana</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Contract Address</span>
+                    <span class="stat-value" style="font-size: 0.8rem;">PuNkEd1...4A2b9C</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Liquidity Locked</span>
+                    <span class="stat-value">✓ Forever</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Renounced</span>
+                    <span class="stat-value">✓ Yes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tax</span>
+                    <span class="stat-value">0% / 0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h3>The Rise of the Impostars</h3>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 1 - Genesis</div>
+                <div class="timeline-event">The first celebrity meme hybrids are discovered in the digital wilderness. Brad Pitbull emerges as the flagship piece.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 2 - The Gallery Opens</div>
+                <div class="timeline-event">The $PUNKED Gallery opens its digital doors, establishing itself as the premier destination for corrupted celebrity art.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 3 - Token Launch</div>
+                <div class="timeline-event">$PUNKED token launches on Solana, allowing fans to own a piece of the absurd. Meme culture meets DeFi.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 4 - Community Curation</div>
+                <div class="timeline-event">The community begins submitting their own celebrity transformations, expanding the collection beyond recognition.</div>
+            </div>
+        </div>
+
+        <div class="manifesto">
+            <h3>The Manifesto of Minted Fame</h3>
+            <p>In an age where celebrity has become currency and authenticity is auctioned to the highest bidder, we present the ultimate satire: $PUNKED. Here, fame is not celebrated but surgically altered, not worshipped but warped beyond recognition.</p>
+            
+            <p>Each token represents a fragment of our collective obsession with celebrity culture, transformed into something beautifully absurd. We have taken the faces that sell magazines and twisted them into art that questions the very nature of fame itself.</p>
+            
+            <p>This is not investment advice. This is artistic rebellion, minted on the blockchain for eternity. Welcome to the future of fame—where Brad Pitt becomes Brad Pitbull, and Meryl Streep transforms into Meryl Sheep.</p>
+            
+            <p><strong>Why we minted fame wrong: Because fame got everything else wrong first.</strong></p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="#" class="action-btn">🚀 Buy $PUNKED</a>
+            <a href="#" class="action-btn secondary">📊 View Chart</a>
+            <a href="gallery.html" class="action-btn secondary">← Back to Gallery</a>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle lighting animations
+        setInterval(() => {
+            const lighting = document.querySelector('.gallery-lighting');
+            if (lighting) {
+                lighting.style.opacity = 0.8 + Math.random() * 0.2;
+            }
+        }, 3000);
+
+        // Animate statistics on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach((stat, index) => {
+                stat.style.opacity = '0';
+                stat.style.transform = 'translateX(20px)';
+                
+                setTimeout(() => {
+                    stat.style.transition = 'all 0.6s ease';
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateX(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
